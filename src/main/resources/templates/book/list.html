@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="./common/header :: common-header"/>
+<body>
+
+<div th:replace="./common/header :: navbar"/>
+<!-- Start container -->
+<div class="container">
+    <div class="row ">
+
+        <!-- Start table-responsive-->
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Couverture</th>                    
+                    <th>iSBN</th>                    
+                    <th>Titre</th>                    
+                    <th>Langue</th>
+                    <th>Pages</th>                    
+                    <th>Editeur</th>                    
+                    <th>Auteur</th>                    
+                    <th>Catégorie</th>          
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="book : ${books}">
+                    <td>
+                        <img class='img-thumbnail img-book-list' th:src="@{'data:image/jpeg;base64,'+${book.generateBase64Image()}}"  />
+                    </td>
+                    <td data-th-text="${book.iSBN}">...</td>
+                    <td data-th-text="${book.title}">...</td>
+                    <td data-th-text="${book.language}">...</td>
+                    <td data-th-text="${book.numberOfPages}">...</td>
+                    <td data-th-text="${book.publisher}">...</td>
+                    <td data-th-text="${book.author.name}">...</td>
+                    <td data-th-text="${book.category.category}">...</td>
+                    <td>
+                        <a th:href="@{/book(id=${book.id})}">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                        <a th:href="@{/book/delete(id=${book.id})}">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                        <a th:href="@{/book/edit(bookId=${book.id})}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End table-responsive-->
+
+
+
+
+
+    </div>
+</div>
+<!-- End container -->
+
+
+<div th:replace="./common/header :: body-bottom-scripts"/>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</body>
+</html>

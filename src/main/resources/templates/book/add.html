@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="./common/header :: common-header"/>
+<body>
+
+<div th:replace="./common/header :: navbar"/>
+<!-- Start container -->
+<div class="container">
+    <div class="row ">
+        <div class="row main">
+            <div class="col-md-6">
+                <h2 class="title">Ajouter Un Livre</h2>
+                <hr/>
+                <form method="post" th:action="@{/book/add}" enctype="multipart/form-data">
+
+
+                    <div class="form-group">
+                        <label for="iSBN">iSBN</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control"  id="iSBN"
+                                       name="iSBN" roleId="iSBN" placeholder="Enter your first iSBN"
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="cols-sm-2 control-label">Titre</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control"  id="title"
+                                       name="title" roleId="title" placeholder="Enter your last le titre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="title" class="cols-sm-2 control-label">Sujet</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control"  id="subject"
+                                       name="subject" roleId="subject" placeholder="Entrer le sujet du livre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publisher" class="cols-sm-2 control-label">Éditrice</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control"  id="publisher"
+                                       name="publisher" roleId="publisher" placeholder="Entrer l'Éditrice du livre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" >
+                        <label for="language">Veuillez sélectionner la langue du livre</label>
+                        <select class="form-control"  name="language" id="language" required="required">
+                            <option disabled="disabled" selected="selected"> -- sélectionner la langue -- </option>
+                            <option>Francais</option>
+                            <option>Anglais</option>
+                            <option>Arable</option>
+                        </select>
+                        <br />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="numberOfPages" class="cols-sm-2 control-label">nomber du Pages</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="number" class="form-control" id="numberOfPages"
+                                       name="numberOfPages" roleId="numberOfPages" placeholder="Entrer le nomber du Pages "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="cover" class="cols-sm-2 control-label">Couverture</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="file" class="form-control" id="cover"
+                                       name="cover" roleId="cover"  placeholder="Sélectionner la couverture du livre"
+                                       multiple required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" >
+                        <label for="authors">Veuillez sélectionner l'authors du livre</label>
+                        <select class="form-control" name="authors" id="authors" required="required">
+                            <option disabled="disabled" value="" selected="selected"> -- sélectionner author -- </option>
+                            <option th:each="author : ${authors}"
+                                    th:value="${author.id}"
+                                    th:utext="${author.name}"/>
+                        </select>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Veuillez sélectionner la categorie du livre</label>
+                        <select class="form-control" name="category" id="category" required="required">
+                            <option disabled="disabled" value="" selected="selected"> -- sélectionner la categorie -- </option>
+                            <option th:each="categorie : ${categories}"
+                                    th:value="${categorie.id}"
+                                    th:utext="${categorie.category}"/>
+                        </select>
+                        <br />
+                    </div>
+
+
+
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary btn-block ">valide</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- End container -->
+
+
+<div th:replace="./common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

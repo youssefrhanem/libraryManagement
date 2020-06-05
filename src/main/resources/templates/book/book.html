@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="./common/header :: common-header"/>
+<body>
+
+<div th:replace="./common/header :: navbar"/>
+<!-- Start container -->
+<div class="container">
+    <div class="row main">
+        <div class="col-md-6">
+            <h2 class="title"><span th:text="${book.title}">...</span></h2>
+            <br/>
+
+            <td>
+                <img class='img-thumbnail img-book-detail' th:src="@{'data:image/jpeg;base64,'+${book.generateBase64Image()}}"  />
+            </td>
+
+
+            <form method="post" action="@{/book/book}">
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary btn-block" style="width: 435px"> ok</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">informations sur le livre</h1>
+                    <hr/>
+                </div>
+                <table class="responstable">
+                    <tr>
+                        <th></th>
+                        <th>Information</th>
+                    </tr>
+
+                    <tr>
+                        <td>iSBN</td>
+                        <td><span th:text="${book.iSBN}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Titre</td>
+                        <td th:value="${book.title}">
+                            <span><span th:text="${book.title}">...</span></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Sujet du livre</td>
+                        <td><span th:text="${book.subject}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Editeur</td>
+                        <td><span th:text="${book.publisher}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Langue</td>
+                        <td><span th:text="${book.language}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Nomber de Pages</td>
+                        <td><span th:text="${book.numberOfPages}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Auteur</td>
+                        <td><span th:text="${book.author.name}">...</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Catégorie</td>
+                        <td><span th:text="${book.category.category}">...</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End container -->
+
+
+<div th:replace="./common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

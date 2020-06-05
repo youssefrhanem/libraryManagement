@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body>
+
+<div th:replace="common/header :: navbar"/>
+<!-- Start container -->
+<div class="container">
+    <div class="row ">
+
+
+        <table border="1px solid" width="100%">
+            <tr>
+                <td>iSBN</td>
+                <td>title</td>
+                <td>numberOfPages</td>
+            </tr>
+
+            <tr th:each="book: ${book}">
+                <td th:text="${book.iSBN}" />
+                <td th:text="${book.title}" />
+                <td th:text="${book.numberOfPages}" />
+            </tr>
+
+        </table>
+
+
+    </div>
+</div>
+<!-- End container -->
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

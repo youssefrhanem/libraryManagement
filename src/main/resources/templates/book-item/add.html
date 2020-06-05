@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="./common/header :: common-header"/>
+<body>
+
+<div th:replace="./common/header :: navbar"/>
+<!-- Start container -->
+<div class="container">
+    <div class="row ">
+        <div class="row main">
+            <div class="col-md-6">
+                <h2 class="title">Ajouter Un élément de livre</h2>
+                <hr/>
+                <form method="post" th:action="@{/book-item/add}">
+
+
+
+                    <div class="form-group">
+                        <label for="book">Veuillez sélectionner le  livre</label>
+                        <select class="form-control" name="book" th:value="${bookItem.book}" id="book" required="required">
+                            <option disabled="disabled" value="" selected="selected"> -- sélectionner le livre -- </option>
+                            <option th:each="book : ${books}"
+                                    th:value="${book.id}"
+                                    th:utext="${book.title}"/>
+                        </select>
+                        <br />
+                    </div>
+
+
+                    <div class="form-group" >
+                        <label for="rack">Veuillez sélectionner le Rack du livre</label>
+                        <select class="form-control" th:value="${bookItem.rack}" name="rack" id="rack" required="required">
+                            <option disabled="disabled" value="" selected="selected"> -- sélectionner rack -- </option>
+                            <option th:each="rack : ${racks}"
+                                    th:value="${rack.id}"
+                                    th:utext="${rack.locationIdentifier}"/>
+                        </select>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isReferenceOnly1">Référence uniquement</label>
+                        <div class="cols-sm-10">
+                                <label class="radio-inline"> oui
+                                    <input type="radio" class="n-radio form-control" name="isReferenceOnly" id="isReferenceOnly1" value="true">
+                                </label>
+                                <label class="radio-inline"> non
+                                    <input type="radio" class="n-radio form-control" name="isReferenceOnly" id="isReferenceOnly2" value="false">
+                                </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="borrowed" class="cols-sm-2 control-label">Emprunté</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="date" class="form-control" th:value="${bookItem.borrowed}"
+                                       id="borrowed"
+                                       name="borrowed" roleId="borrowed" placeholder="Enter your last le titre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="dueDate" class="cols-sm-2 control-label">Date d'échéance</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="date" class="form-control" th:value="${bookItem.dueDate}"
+                                       id="dueDate"
+                                       name="dueDate" roleId="dueDate" placeholder="Entrer le sujet du livre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="format">Veuillez sélectionner la format du livre</label>
+                        <select class="form-control"  name="format" id="format" required="required">
+                            <option disabled="disabled" selected="selected"> -- sélectionner la langue -- </option>
+                            <option>Francais</option>
+                            <option>Anglais</option>
+                            <option>Arable</option>
+                        </select>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Veuillez sélectionner la status du livre</label>
+                        <select class="form-control"  name="status" id="status" required="required">
+                            <option disabled="disabled" selected="selected"> -- sélectionner la langue -- </option>
+                            <option>AVAILABLE</option>
+                            <option>LOANED</option>
+                            <option>LOST</option>
+                        </select>
+                        <br />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfPurchase" class="cols-sm-2 control-label">date d'achat</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="date" class="form-control" th:value="${bookItem.dateOfPurchase}"
+                                       id="dateOfPurchase"
+                                       name="dateOfPurchase" roleId="dateOfPurchase" placeholder="Entrer la date d'achat du livre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publicationDate" class="cols-sm-2 control-label">date de publication</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="date" class="form-control" th:value="${bookItem.publicationDate}"
+                                       id="publicationDate"
+                                       name="publicationDate" roleId="publicationDate"
+                                       placeholder="Entrer la date d'achat du livre "
+                                       required="required"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary btn-block ">valide</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- End container -->
+
+
+<div th:replace="./common/header :: body-bottom-scripts"/>
+
+</body>
+</html>
